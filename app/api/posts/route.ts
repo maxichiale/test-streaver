@@ -18,6 +18,9 @@ export async function GET(request: Request) {
 
         return NextResponse.json(posts);
     } catch (error) {
-        return NextResponse.json({error: "Error fetching posts"});
+        return new Response(
+            JSON.stringify({ error: "Error fetching posts" }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
     }
 }

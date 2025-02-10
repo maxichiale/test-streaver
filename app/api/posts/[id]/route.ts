@@ -12,7 +12,9 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
 
         return NextResponse.json({ message: `Post ${id} deleted` });
     } catch (error) {
-        console.error("Error deleting post:", error);
-        return NextResponse.json({ error: "Error deleting post" });
+        return new Response(
+            JSON.stringify({ error: "Error deleting post" }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
     }
 }

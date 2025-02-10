@@ -1,12 +1,12 @@
 //https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding
 
-import {PrismaClient} from "@prisma/client";
+import {PrismaClient, User, Post} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 async function main() {
-    const posts = await fetch("https://jsonplaceholder.typicode.com/posts").then(res => res.json());
-    const users = await fetch("https://jsonplaceholder.typicode.com/users").then(res => res.json());
+    const posts : Post[] = await fetch("https://jsonplaceholder.typicode.com/posts").then(res => res.json());
+    const users : User[] = await fetch("https://jsonplaceholder.typicode.com/users").then(res => res.json());
 
 
     await Promise.all(users.map(async (user) => {
